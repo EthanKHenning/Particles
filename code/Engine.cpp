@@ -20,3 +20,34 @@ void Engine::run() {
         Engine::draw();
     }
 }
+
+void Engine::input()
+{
+    Event event;
+    Vector2i mouseLocation;
+    while (m_Window.pollEvent(event))
+        {
+        if (Keyboard::isKeyPressed(Keyboard::Escape))
+        {
+            m_Window.close();
+        }
+            if (event.type == sf::Event::Closed) RenderWindow.close();
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    //create loop to construct particles 
+                    cout << "the left button was pressed" << endl;
+
+                    //veryComplex.setCenter(clickPos);
+                }
+            }
+            if (event.type == sf::Event::MouseMoved)
+            {
+                mouseLocation = {event.mouseMove.x, event.mouseMove.y};
+
+                //veryComplex.setMouseLocation(mouseLocation);
+            }
+        }
+
+}
