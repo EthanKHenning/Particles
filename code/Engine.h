@@ -5,7 +5,7 @@
 using namespace sf;
 using namespace std;
 
-class Engine
+class Engine 
 {
 private:
 	// A regular RenderWindow
