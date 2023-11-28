@@ -31,7 +31,7 @@ void Engine::input()
         {
             m_Window.close();
         }
-            if (event.type == sf::Event::Closed) RenderWindow.close();
+            if (event.type == sf::Event::Closed) m_Window.close();
             if (event.type == sf::Event::MouseButtonPressed)
             {
                 if (event.mouseButton.button == sf::Mouse::Left)
