@@ -51,3 +51,17 @@ void Engine::input()
         }
 
 }
+
+void Engine::update(float dsAsSeconds) {
+    int size = m_particles.size();
+
+    for (int x = 0; x < size; x){
+        if (dsAsSeconds > 0.0){
+            m_particles[x].update(1);
+            x++;
+        }
+        else {
+            m_particles.erase();
+        }
+    }
+}
