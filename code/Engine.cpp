@@ -1,4 +1,4 @@
-#include "Engine.h";
+#include "Engine.h"
 
 Engine::Engine() {
     m_Window.create(VideoMode::getDesktopMode(), "Particles");
@@ -16,7 +16,7 @@ void Engine::run() {
     while(m_Window.isOpen()){
         time.restart();
         Engine::input();
-        Engine::update;
+        Engine::update(5);
         Engine::draw();
     }
 }
@@ -53,15 +53,22 @@ void Engine::input()
 }
 
 void Engine::update(float dsAsSeconds) {
-    int size = m_particles.size();
+    int x = 0;
 
-    for (int x = 0; x < size; x){
-        if (dsAsSeconds > 0.0){
-            m_particles[x].update(1);
+    for (Particle currParticle : m_particles){
+        if (currParticle.getTTL() > 0.0)
+        {
+            currParticle.update(dsAsSeconds);
             x++;
+            currParticle = m_particles[x];
         }
-        else {
-            m_particles.erase();
+        else
+        {
+            m_particles.erase(m_particles.begin() + x);
+            if (x < m_particles.size())
+            {
+                currParticle = m_particles[x];
+            }
         }
     }
 }
