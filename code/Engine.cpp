@@ -65,3 +65,11 @@ void Engine::update(float dsAsSeconds) {
         }
     }
 }
+
+void Engine::draw()
+{
+    m_Window.clear();
+
+    //m_Window.draw();
+    
+}
