@@ -77,6 +77,10 @@ void Engine::draw()
 {
     m_Window.clear();
 
-    //m_Window.draw();
-    
+    for (int x = 0; x < m_particles.size(); x++)
+    {
+        m_Window.draw(m_particles[x]);
+    }
+
+    m_Window.display();
 }
