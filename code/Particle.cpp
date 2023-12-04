@@ -154,7 +154,18 @@ void Particle::draw(RenderTarget &target, RenderStates states) const {
 }
 
 void Particle::update(float dt) {
+    m_ttl -= dt;
+    rotate(dt * m_radiansPerSec);
+    scale(SCALE);
 
+    float dx, dy;
+    dx = m_vx * dt;
+
+    m_vy -= G * dt;
+
+    dy = m_vy * dt;
+
+    translate(dx, dy);
 }
 
 void Particle::translate(double xShift, double yShift) {
