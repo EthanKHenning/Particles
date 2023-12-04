@@ -129,14 +129,16 @@ namespace Matrices
     }
 
     TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2, nCols) {
-        for (int i = 0; i < nCols; i++)
-        {
-            a.at(0).at(i) = xShift;
-        }
 
-        for (int j = 0; j < nCols; j++)
+        for (int i = 0; i < 2; i++)
         {
-            a.at(1).at(j) = yShift;
+            for (int j = 0; j < nCols; j++)
+            {
+                if (i == 0) {a.at(i).at(j) = xShift;}
+
+                else {a.at(i).at(j) = yShift;}
+                cout << a.at(i).at(j);
+            }
         }
     }
 
