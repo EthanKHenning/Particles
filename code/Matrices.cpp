@@ -116,11 +116,16 @@ namespace Matrices
         }
         return os;
 	}
-    TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2, nCols) {
+    RotationMatrix::RotationMatrix(double theta) : Matrix(2,2) {
 
     }
 
     ScalingMatrix::ScalingMatrix(double scale) : Matrix(2,2){
 
     }
+
+    TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2, nCols) {
+
+    }
+
 }
