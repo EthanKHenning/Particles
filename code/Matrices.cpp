@@ -116,4 +116,7 @@ namespace Matrices
         }
         return os;
 	}
+    TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2, nCols) {
+
+    }
 }
