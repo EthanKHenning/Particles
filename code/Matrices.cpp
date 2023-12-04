@@ -124,7 +124,8 @@ namespace Matrices
     }
 
     ScalingMatrix::ScalingMatrix(double scale) : Matrix(2,2){
-
+        a.at(0).at(0) = scale;
+        a.at(1).at(1) = scale;
     }
 
     TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2, nCols) {
