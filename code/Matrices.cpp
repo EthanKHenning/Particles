@@ -120,7 +120,7 @@ namespace Matrices
         a.at(0).at(0) = cos(theta);
         a.at(0).at(1) = (sin(theta)) * -1;
         a.at(1).at(0) = sin(theta);
-        a.at(0).at(0) = cos(theta);
+        a.at(1).at(1) = cos(theta);
     }
 
     ScalingMatrix::ScalingMatrix(double scale) : Matrix(2,2){
@@ -136,7 +136,7 @@ namespace Matrices
 
         for (int j = 0; j < nCols; j++)
         {
-            a.at(0).at(j) = yShift;
+            a.at(1).at(j) = yShift;
         }
     }
 
