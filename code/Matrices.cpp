@@ -119,4 +119,8 @@ namespace Matrices
     TranslationMatrix::TranslationMatrix(double xShift, double yShift, int nCols) : Matrix(2, nCols) {
 
     }
+
+    ScalingMatrix::ScalingMatrix(double scale) : Matrix(2,2){
+
+    }
 }
