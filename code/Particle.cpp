@@ -155,7 +155,8 @@ void Particle::draw(RenderTarget &target, RenderStates states) const
 
 }
 
-void Particle::update(float dt) {
+void Particle::update(float dt) 
+{
     m_ttl -= dt;
     rotate(dt * m_radiansPerSec);
     scale(SCALE);
@@ -171,7 +172,8 @@ void Particle::update(float dt) {
 }
 
 
-void Particle::translate(double xShift, double yShift) {
+void Particle::translate(double xShift, double yShift) 
+{
     
     m_centerCoordinate.x += xShift;
     m_centerCoordinate.y += yShift;
@@ -185,6 +187,7 @@ void Particle::rotate(double theta)
 
 }
 
-void Particle::scale(double c) {
+void Particle::scale(double c) 
+{
 
 }
