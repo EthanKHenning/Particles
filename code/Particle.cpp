@@ -147,7 +147,7 @@ void Particle::unitTests()
 
 Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosition): m_A(2, numPoints) 
 {
-    
+
 }
 
 void Particle::draw(RenderTarget &target, RenderStates states) const 
@@ -172,10 +172,16 @@ void Particle::update(float dt) {
 
 
 void Particle::translate(double xShift, double yShift) {
-
+    
+    m_centerCoordinate.x += xShift;
+    m_centerCoordinate.y += yShift;
 }
 
-void Particle::rotate(double theta) {
+void Particle::rotate(double theta) 
+{
+    Vector2f temp =  m_centerCoordinate;
+    //shift particle back to the origin
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
 
 }
 
