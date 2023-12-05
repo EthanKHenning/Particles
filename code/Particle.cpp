@@ -184,7 +184,10 @@ void Particle::rotate(double theta)
     Vector2f temp =  m_centerCoordinate;
     //shift particle back to the origin
     translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
+    //matrix multiplication
+    
 
+    translate(temp.x, temp.y);
 }
 
 void Particle::scale(double c) 
