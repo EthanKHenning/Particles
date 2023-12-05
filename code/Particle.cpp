@@ -145,11 +145,13 @@ void Particle::unitTests()
     cout << "Score: " << score << " / 7" << endl;
 }
 
-Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosition): m_A(2, numPoints) {
-
+Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosition): m_A(2, numPoints) 
+{
+    
 }
 
-void Particle::draw(RenderTarget &target, RenderStates states) const {
+void Particle::draw(RenderTarget &target, RenderStates states) const 
+{
 
 }
 
@@ -167,6 +169,7 @@ void Particle::update(float dt) {
 
     translate(dx, dy);
 }
+
 
 void Particle::translate(double xShift, double yShift) {
 
