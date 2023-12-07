@@ -52,6 +52,8 @@ void Engine::input()
 
 }
 
+
+//ttl means time to live
 void Engine::update(float dsAsSeconds) {
     int x = 0;
 

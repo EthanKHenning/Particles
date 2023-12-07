@@ -193,33 +193,29 @@ void Particle::rotate(double theta)
     //shift particle back to the origin
     translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
 
-    translate(temp.x, temp.y);
+    
 
-    //onstruct rotating angle of theta
+    //construct rotating angle of theta
+    RotationMatrix R = theta
 
     /*Note: make sure to left-multiply r, as matrix multiplication is not commutative due to the fact that it multiplies the 
     lvalue's rows into the rvalue's columns.
-    */
+    */;
 
+   translate(temp.x, temp.y);
 }
 
 void Particle::scale(double c) 
 {
+    Vector2f temp = m_centerCoordinate;
+
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
 
     ScalingMatrix S = c;
 
-    //matrix multiplication
-    for (float i = 0; i < -m_centerCoordinate.y; i++)
-    {
-        for (float j = 0; j < -m_centerCoordinate.x; j++)
-        {
-            m_A = S * m_A;
-        }
-    }
+    m_A = S * m_A;
+    
 
-    Vector2f temp = m_centerCoordinate;
-
-    // Shift particle back to the origin
-    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
+    translate(temp.x, temp.y);
     
 }
