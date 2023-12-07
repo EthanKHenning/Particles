@@ -173,10 +173,17 @@ void Particle::update(float dt)
 
 void Particle::translate(double xShift, double yShift) 
 {
-    
+    // Constructs a TranslationMatrix with the specified shift values
+    TranslationMatrix T(xShift, yShift);
+
+    // Add the translation matrix to m_A
+    m_A = T.getMatrix() + m_A;
+
+    // Updates the particle's center coordinate
     m_centerCoordinate.x += xShift;
     m_centerCoordinate.y += yShift;
 }
+
 
 void Particle::rotate(double theta) 
 {
