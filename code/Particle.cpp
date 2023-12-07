@@ -175,10 +175,11 @@ void Particle::update(float dt)
 void Particle::translate(double xShift, double yShift) 
 {
     // Constructs a TranslationMatrix with the specified shift values
-    TranslationMatrix T(xShift, yShift);
+    //5 is just a random numnber to fill in nCols, switch out later
+    TranslationMatrix T(xShift, yShift, 5);
 
     // Add the translation matrix to m_A
-    m_A = T.getMatrix() + m_A;
+    m_A = T + m_A;
 
     // Updates the particle's center coordinate
     m_centerCoordinate.x += xShift;
@@ -191,7 +192,20 @@ void Particle::rotate(double theta)
     Vector2f temp =  m_centerCoordinate;
     //shift particle back to the origin
     translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
-    
+
+    translate(temp.x, temp.y);
+
+    //onstruct rotating angle of theta
+
+    /*Note: make sure to left-multiply r, as matrix multiplication is not commutative due to the fact that it multiplies the 
+    lvalue's rows into the rvalue's columns.
+    */
+
+}
+
+void Particle::scale(double c) 
+{
+
     ScalingMatrix S = c;
 
     //matrix multiplication
@@ -203,11 +217,6 @@ void Particle::rotate(double theta)
         }
     }
 
-    translate(temp.x, temp.y);
-}
-
-void Particle::scale(double c) 
-{
     Vector2f temp = m_centerCoordinate;
 
     // Shift particle back to the origin
