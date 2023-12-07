@@ -15,6 +15,7 @@ void Engine::run() {
 
     while(m_Window.isOpen()){
         time.restart();
+        //convert time to seconds
         Engine::input();
         Engine::update(5);
         Engine::draw();
