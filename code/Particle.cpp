@@ -196,11 +196,13 @@ void Particle::rotate(double theta)
     
 
     //construct rotating angle of theta
-    RotationMatrix R = theta
+    RotationMatrix R = theta;
+
+    m_A = R * m_A;
 
     /*Note: make sure to left-multiply r, as matrix multiplication is not commutative due to the fact that it multiplies the 
     lvalue's rows into the rvalue's columns.
-    */;
+    */
 
    translate(temp.x, temp.y);
 }
