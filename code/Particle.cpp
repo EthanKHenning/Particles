@@ -161,13 +161,12 @@ void Particle::update(float dt)
     rotate(dt * m_radiansPerSec);
     scale(SCALE);
 
-    float dx, dy;
-    dx = m_vx * dt;
-
+    // Calculate the displacement
+    float dx = m_vx * dt;
     m_vy -= G * dt;
+    float dy = m_vy * dt;
 
-    dy = m_vy * dt;
-
+    // Updates the position
     translate(dx, dy);
 }
 
