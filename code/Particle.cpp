@@ -176,7 +176,7 @@ void Particle::translate(double xShift, double yShift)
 {
     // Constructs a TranslationMatrix with the specified shift values
     //5 is just a random numnber to fill in nCols, switch out later
-    TranslationMatrix T(xShift, yShift, 5);
+    TranslationMatrix T(xShift, yShift, 0);
 
     // Add the translation matrix to m_A
     m_A = T + m_A;
@@ -196,7 +196,7 @@ void Particle::rotate(double theta)
     
 
     //construct rotating angle of theta
-    RotationMatrix R = theta;
+    RotationMatrix R(theta);
 
     m_A = R * m_A;
 
