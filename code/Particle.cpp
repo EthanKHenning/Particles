@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include <cmath>
 
 
 bool Particle::almostEqual(double a, double b, double eps)
@@ -207,5 +208,9 @@ void Particle::rotate(double theta)
 
 void Particle::scale(double c) 
 {
+    Vector2f temp = m_centerCoordinate;
 
+    // Shift particle back to the origin
+    translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
+    
 }
