@@ -38,6 +38,10 @@ void Engine::input()
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     //create loop to construct particles 
+                    for(int i = 0; i < 5; i++)
+                    {
+                        m_particles;
+                    }
                     cout << "the left button was pressed" << endl;
 
                     //veryComplex.setCenter(clickPos);

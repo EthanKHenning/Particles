@@ -151,9 +151,11 @@ Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosit
 
 }
 
+
+
 void Particle::draw(RenderTarget &target, RenderStates states) const 
 {
-
+    //VertexArray lines(TriangleFan + 1);
 }
 
 void Particle::update(float dt) 
