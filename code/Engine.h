@@ -16,7 +16,7 @@ private:
 
 	// Private functions for internal use only
 	void input();
-	void update(float dtAsSeconds);
+	void update(float);
 	void draw();
 
 public:

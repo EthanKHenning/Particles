@@ -5,8 +5,9 @@ Engine::Engine() {
 }
 
 void Engine::run() {
-    Clock time;
-    time.getElapsedTime();
+    Clock clock1;
+    clock1.getElapsedTime();
+    Time time;
 
     cout << "Starting Particle unit tests..." << endl;
     Particle p(m_Window, 4, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
@@ -14,10 +15,9 @@ void Engine::run() {
     cout << "Unit tests complete.  Starting engine..." << endl;
 
     while(m_Window.isOpen()){
-        time.restart();
-        //convert time to seconds
+        time = clock1.restart();
         Engine::input();
-        Engine::update(5);
+        Engine::update(time.asSeconds());
         Engine::draw();
     }
 }
