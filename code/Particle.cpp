@@ -157,7 +157,31 @@ Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosit
     m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
 
     m_vx = rand() % 2;
+    m_vy = rand() % 2;
 
+    //Colors can be changed here
+    //m_color1 is white m_color2 is random by default
+
+    double theta = rand() % 90;
+    // random angle might be wrong
+
+    double dTheta = 2 * M_PI / (numPoints - 1);
+
+    for (int j = 0; j < numPoints; j++)
+    {
+        double r, dx, dy;
+
+        r = rand() % 80 + 20;
+
+        dx = r * cos(theta);
+        dy = r * sin(theta);
+
+        m_A(0,j) = m_centerCoordinate.x + dx;
+        m_A(1,j) = m_centerCoordinate.y + dy;
+
+        theta += dTheta;
+
+    }
 }
 
 
