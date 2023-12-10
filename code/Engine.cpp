@@ -16,9 +16,9 @@ void Engine::run() {
 
     while(m_Window.isOpen()){
         time = clock1.restart();
-        Engine::input();
-        Engine::update(time.asSeconds());
-        Engine::draw();
+        input();
+        update(time.asSeconds());
+        draw();
     }
 }
 
@@ -26,42 +26,34 @@ void Engine::input()
 {
     Event event;
     Vector2i mouseLocation;
-    while (m_Window.pollEvent(event))
-        {
+    while (m_Window.pollEvent(event)) {
         if (Keyboard::isKeyPressed(Keyboard::Escape))
         {
             m_Window.close();
         }
-            if (event.type == sf::Event::Closed) m_Window.close();
-            if (event.type == sf::Event::MouseButtonPressed)
+        if (event.type == sf::Event::Closed) m_Window.close();
+        if (event.type == sf::Event::MouseButtonPressed)
+        {
+            if (event.mouseButton.button == sf::Mouse::Left)
             {
-                if (event.mouseButton.button == sf::Mouse::Left)
+                mouseLocation = Mouse::getPosition();
+
+                //create loop to construct particles
+                for (int i = 0; i < 5; i++)
                 {
-                    //create loop to construct particles 
-                    for(int i = 0; i < 5; i++)
-                    {
-                        m_particles;
-                    }
-                    cout << "the left button was pressed" << endl;
-
-                    //veryComplex.setCenter(clickPos);
+                    int numPoints = rand() % 26 + 25;
+                    Particle mainP(m_Window, numPoints, mouseLocation);
                 }
-            }
-            if (event.type == sf::Event::MouseMoved)
-            {
-                mouseLocation = {event.mouseMove.x, event.mouseMove.y};
-
-                //veryComplex.setMouseLocation(mouseLocation);
+                cout << "the left button was pressed" << endl;
             }
         }
-
+    }
 }
 
 
 //ttl means time to live
 void Engine::update(float dsAsSeconds) {
     int x = 0;
-
     for (Particle currParticle : m_particles){
         if (currParticle.getTTL() > 0.0)
         {
@@ -84,9 +76,9 @@ void Engine::draw()
 {
     m_Window.clear();
 
-    for (int x = 0; x < m_particles.size(); x++)
+    for (Particle currParticle : m_particles)
     {
-        m_Window.draw(m_particles[x]);
+        m_Window.draw(currParticle);
     }
 
     m_Window.display();

@@ -156,14 +156,14 @@ Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosit
     m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
     m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
 
-    m_vx = rand() % 2;
-    m_vy = rand() % 2;
+    m_vx = rand() % 101 + 200;
+    m_vy = rand() % 101 + 200;
 
     //Colors can be changed here
     //m_color1 is white m_color2 is random by default
 
-    double theta = rand() % 90;
-    // random angle might be wrong
+    double theta = rand() % 91;
+    // random angle might be wrong (0 - 90)
 
     double dTheta = 2 * M_PI / (numPoints - 1);
 
@@ -171,7 +171,7 @@ Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosit
     {
         double r, dx, dy;
 
-        r = rand() % 80 + 20;
+        r = rand() % 61 + 20;
 
         dx = r * cos(theta);
         dy = r * sin(theta);
@@ -188,7 +188,21 @@ Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosit
 
 void Particle::draw(RenderTarget &target, RenderStates states) const 
 {
-    //VertexArray lines(TriangleFan + 1);
+    VertexArray lines(TriangleFan, m_numPoints + 1);
+    Vector2f center(target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane));
+
+    lines[0].position = center;
+    lines[0].color = m_color1;
+
+    for (int j = 1; j <= m_numPoints; j++)
+    {
+
+        lines[j].position = {static_cast<float>(m_A.operator()(0, j - 1)),static_cast<float>(m_A.operator()(1, j - 1))};
+
+        lines[j].color = m_color2;
+    }
+
+    target.draw(lines);
 }
 
 void Particle::update(float dt) 
@@ -211,7 +225,7 @@ void Particle::translate(double xShift, double yShift)
 {
     // Constructs a TranslationMatrix with the specified shift values
     //5 is just a random numnber to fill in nCols, switch out later
-    TranslationMatrix T(xShift, yShift, 0);
+    TranslationMatrix T(xShift, yShift, m_A.getCols());
 
     // Add the translation matrix to m_A
     m_A = T + m_A;

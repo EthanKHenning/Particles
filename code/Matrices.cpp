@@ -137,7 +137,6 @@ namespace Matrices
                 if (i == 0) {a.at(i).at(j) = xShift;}
 
                 else {a.at(i).at(j) = yShift;}
-                cout << a.at(i).at(j);
             }
         }
     }

@@ -2,6 +2,7 @@
 
 int main()
 {
+    srand(time(nullptr));
 	// Declare an instance of Engine
 	Engine engine;
 	// Start the engine
