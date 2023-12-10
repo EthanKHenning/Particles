@@ -148,6 +148,15 @@ void Particle::unitTests()
 
 Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosition): m_A(2, numPoints) 
 {
+    m_ttl = TTL;
+    m_numPoints = numPoints;
+    m_radiansPerSec = ((float)rand() / (RAND_MAX)) / M_PI;
+
+    m_cartesianPlane.setCenter(0,0);
+    m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
+    m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
+
+    m_vx = rand() % 2;
 
 }
 
