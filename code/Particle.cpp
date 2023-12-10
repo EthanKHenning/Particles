@@ -1,5 +1,4 @@
 #include "Particle.h"
-#include <cmath>
 
 
 bool Particle::almostEqual(double a, double b, double eps)

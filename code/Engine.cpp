@@ -43,6 +43,7 @@ void Engine::input()
                 {
                     int numPoints = rand() % 26 + 25;
                     Particle mainP(m_Window, numPoints, mouseLocation);
+                    m_particles.push_back(mainP);
                 }
                 cout << "the left button was pressed" << endl;
             }
@@ -52,22 +53,19 @@ void Engine::input()
 
 
 //ttl means time to live
-void Engine::update(float dsAsSeconds) {
-    int x = 0;
-    for (Particle currParticle : m_particles){
-        if (currParticle.getTTL() > 0.0)
+void Engine::update(float dtAsSeconds)
+{
+    for (auto currParticle = m_particles.begin(); currParticle != m_particles.end();)
+    {
+        if (currParticle->getTTL() > 0.0)
         {
-            currParticle.update(dsAsSeconds);
-            x++;
-            currParticle = m_particles[x];
+            currParticle->update(dtAsSeconds);
+            currParticle++;
         }
+
         else
         {
-            m_particles.erase(m_particles.begin() + x);
-            if (x < m_particles.size())
-            {
-                currParticle = m_particles[x];
-            }
+            currParticle = m_particles.erase(currParticle);
         }
     }
 }
@@ -76,9 +74,9 @@ void Engine::draw()
 {
     m_Window.clear();
 
-    for (Particle currParticle : m_particles)
+    for (int x = 0; x < m_particles.size(); x++)
     {
-        m_Window.draw(currParticle);
+        m_Window.draw(m_particles.at(x));
     }
 
     m_Window.display();
