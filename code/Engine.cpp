@@ -39,7 +39,7 @@ void Engine::input()
                 mouseLocation = Mouse::getPosition();
 
                 //create loop to construct particles
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     int numPoints = rand() % 26 + 25;
                     Particle mainP(m_Window, numPoints, mouseLocation);

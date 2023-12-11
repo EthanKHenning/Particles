@@ -155,18 +155,26 @@ Particle::Particle(RenderTarget &target, int numPoints, Vector2i mouseClickPosit
     m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
     m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
 
-    m_vx = 50;
-    m_vy = 50;
+    //Pixel Velocity
+    m_vx = rand() % 300 + 101;
+    m_vy = rand() % 300 + 101;
+
+    if (rand() % 2 != 0) {m_vx * -1;}
+
 
     //Colors can be changed here
+    //m_color1 is white m_color2 is random
+    m_color2.r = rand() % 255;
+    m_color2.g = rand() % 255;
+    m_color2.b = rand() % 255;
 
     m_color1.r = 255;
     m_color1.g = 255;
     m_color1.b = 255;
-    //m_color1 is white m_color2 is random by default
 
-    double theta = rand() % 91;
-    // random angle might be wrong (0 - 90)
+    //Generate numPoint vertices
+
+    double theta = ((float)rand() / (RAND_MAX)) * (M_PI / 2);
 
     double dTheta = 2 * M_PI / (numPoints - 1);
 
@@ -196,12 +204,13 @@ void Particle::draw(RenderTarget &target, RenderStates states) const
 
     lines[0].position = center;
     lines[0].color = m_color1;
+    cout << "point 0, x: " << lines[0].position.x << " " << "y: " << lines[0].position.y << endl;
 
     for (int j = 1; j <= m_numPoints; j++)
     {
+        Vector2f temp(target.mapCoordsToPixel({static_cast<float>(m_A.operator()(0,j-1)),static_cast<float>(m_A.operator()(1,j-1)) }, m_cartesianPlane));
 
-        lines[j].position = {static_cast<float>(m_A.operator()(0, j - 1)),static_cast<float>(m_A.operator()(1, j - 1))};
-
+        lines[j].position = temp;
         lines[j].color = m_color2;
     }
 
@@ -227,7 +236,6 @@ void Particle::update(float dt)
 void Particle::translate(double xShift, double yShift) 
 {
     // Constructs a TranslationMatrix with the specified shift values
-    //5 is just a random numnber to fill in nCols, switch out later
     TranslationMatrix T(xShift, yShift, m_A.getCols());
 
     // Add the translation matrix to m_A
@@ -265,11 +273,9 @@ void Particle::scale(double c)
 
     translate(-m_centerCoordinate.x, -m_centerCoordinate.y);
 
-    ScalingMatrix S = c;
+    ScalingMatrix S(c);
 
     m_A = S * m_A;
-    
 
     translate(temp.x, temp.y);
-    
 }
