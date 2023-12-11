@@ -204,7 +204,6 @@ void Particle::draw(RenderTarget &target, RenderStates states) const
 
     lines[0].position = center;
     lines[0].color = m_color1;
-    cout << "point 0, x: " << lines[0].position.x << " " << "y: " << lines[0].position.y << endl;
 
     for (int j = 1; j <= m_numPoints; j++)
     {
